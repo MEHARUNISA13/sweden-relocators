@@ -121,12 +121,12 @@ export default function Navbar() {
               </a>
             </div>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - BLACK BG */}
             <div className="hidden lg:flex items-center gap-3 4k:gap-6 flex-shrink-0">
-              <button className="px-5 xl:px-6 4k:px-12 py-2.5 xl:py-3 4k:py-6 text-sm xl:text-[15px] 4k:text-2xl font-medium text-blue-600 border-2 border-blue-600 rounded-lg hover:bg-blue-50 transition-all whitespace-nowrap">
+              <button className="px-5 xl:px-6 4k:px-12 py-2.5 xl:py-3 4k:py-6 text-sm xl:text-[15px] 4k:text-2xl font-medium text-white bg-black rounded-lg hover:bg-gray-800 transition-all whitespace-nowrap">
                 Book an Appointment
               </button>
-              <button className="px-5 xl:px-6 4k:px-12 py-2.5 xl:py-3 4k:py-6 text-sm xl:text-[15px] 4k:text-2xl font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-all whitespace-nowrap">
+              <button className="px-5 xl:px-6 4k:px-12 py-2.5 xl:py-3 4k:py-6 text-sm xl:text-[15px] 4k:text-2xl font-medium text-white bg-black rounded-lg hover:bg-gray-800 transition-all whitespace-nowrap">
                 Login
               </button>
             </div>
@@ -170,10 +170,10 @@ export default function Navbar() {
               </a>
               
               <div className="pt-4 space-y-3 border-t border-gray-100 mt-4">
-                <button className="w-full px-4 py-3 text-base text-blue-600 border-2 border-blue-600 rounded-lg hover:bg-blue-50 transition-colors">
+                <button className="w-full px-4 py-3 text-base text-white bg-black rounded-lg hover:bg-gray-800 transition-colors">
                   Book an Appointment
                 </button>
-                <button className="w-full px-4 py-3 text-base text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors">
+                <button className="w-full px-4 py-3 text-base text-white bg-black rounded-lg hover:bg-gray-800 transition-colors">
                   Login
                 </button>
               </div>
