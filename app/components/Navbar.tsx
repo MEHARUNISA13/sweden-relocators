@@ -9,50 +9,72 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
       
-      {/* Top Info Bar */}
-      <div className="bg-gray-50 border-b border-gray-200">
+      {/* Top Info Bar with Scrolling Animation */}
+      <div className="bg-gray-50 border-b border-gray-200 overflow-hidden">
+        <style jsx>{`
+          @keyframes scroll {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+          .animate-scroll {
+            animation: scroll 20s linear infinite;
+          }
+          .animate-scroll:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
+        
         <div className="max-w-[1400px] 2xl:max-w-[1600px] 4k:max-w-[2400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 4k:px-24">
           <div className="flex items-center justify-between h-9 sm:h-10 4k:h-16 text-[11px] sm:text-xs 4k:text-xl text-gray-600">
             
-            {/* Left side stats */}
-            <div className="hidden md:flex items-center gap-4 lg:gap-6 4k:gap-12">
-              <span className="whitespace-nowrap">Employment Rate: 69.6%</span>
-              <span className="whitespace-nowrap">Education Rate: 85.2%</span>
-              <span className="whitespace-nowrap">Gender Ratio: 1:1</span>
-              <span className="flex items-center gap-1.5 4k:gap-3">
-                <span className="text-base 4k:text-2xl">🇸🇪</span>
-                <span>Sweden</span>
-              </span>
+            {/* Left side stats with animation */}
+            <div className="hidden md:flex items-center gap-4 lg:gap-6 4k:gap-12 overflow-hidden flex-1">
+              <div className="flex items-center gap-4 lg:gap-6 4k:gap-12 animate-scroll">
+                <span className="whitespace-nowrap">Employment Rate: 69.6%</span>
+                <span className="whitespace-nowrap">Education Rate: 85.2%</span>
+                <span className="whitespace-nowrap">Gender Ratio: 1:1</span>
+                <span className="flex items-center gap-1.5 4k:gap-3">
+                  <span className="text-base 4k:text-2xl">🇸🇪</span>
+                  <span>Sweden</span>
+                </span>
+                <span className="whitespace-nowrap">GDP: US$ 610.1 billion</span>
+                <span className="whitespace-nowrap">Total Population: 10.65 million</span>
+                {/* Duplicate for seamless loop */}
+                <span className="whitespace-nowrap">Employment Rate: 69.6%</span>
+                <span className="whitespace-nowrap">Education Rate: 85.2%</span>
+                <span className="whitespace-nowrap">Gender Ratio: 1:1</span>
+                <span className="flex items-center gap-1.5 4k:gap-3">
+                  <span className="text-base 4k:text-2xl">🇸🇪</span>
+                  <span>Sweden</span>
+                </span>
+                <span className="whitespace-nowrap">GDP: US$ 610.1 billion</span>
+                <span className="whitespace-nowrap">Total Population: 10.65 million</span>
+              </div>
             </div>
             
-            {/* Right side - FLAG & LANGUAGE */}
+            {/* RIGHT side - US English flag only */}
             <div className="ml-auto flex items-center gap-4 lg:gap-6 4k:gap-12">
-              {/* Swedish Flag */}
-              <div className="flex items-center gap-1.5 4k:gap-3">
-                <div className="w-4 h-3 4k:w-8 4k:h-6 bg-blue-600 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-full h-1/3 bg-blue-600"></div>
-                  <div className="absolute top-1/3 left-0 w-full h-1/3 bg-yellow-400"></div>
-                  <div className="absolute top-2/3 left-0 w-full h-1/3 bg-blue-600"></div>
-                  <div className="absolute top-0 left-1/4 w-1/6 h-full bg-yellow-400"></div>
+              <div className="flex items-center gap-2 4k:gap-4">
+                <div className="w-5 h-4 4k:w-10 4k:h-8 bg-white border border-gray-300 rounded-sm relative overflow-hidden">
+                  {/* Red and White Stripes */}
+                  <div className="absolute inset-0 flex flex-col">
+                    <div className="flex-1 bg-red-600"></div>
+                    <div className="flex-1 bg-white"></div>
+                    <div className="flex-1 bg-red-600"></div>
+                    <div className="flex-1 bg-white"></div>
+                    <div className="flex-1 bg-red-600"></div>
+                    <div className="flex-1 bg-white"></div>
+                    <div className="flex-1 bg-red-600"></div>
+                  </div>
+                  {/* Blue Canton */}
+                  <div className="absolute top-0 left-0 w-[40%] h-[55%] bg-blue-900"></div>
                 </div>
-                <span>Swedish</span>
+                <span className="text-gray-700 font-medium">US English</span>
               </div>
-              
-              {/* English Flag */}
-              <button className="flex items-center gap-1.5 4k:gap-3 hover:opacity-80 transition-opacity">
-                <div className="w-4 h-3 4k:w-8 4k:h-6 bg-blue-600 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-blue-600"></div>
-                  <div className="absolute inset-0" style={{
-                    background: `linear-gradient(90deg, transparent 30%, white 30%, white 35%, transparent 35%, transparent 65%, white 65%, white 70%, transparent 70%),
-                                linear-gradient(transparent 45%, white 45%, white 55%, transparent 55%)`
-                  }}></div>
-                  <div className="absolute inset-0" style={{
-                    background: `linear-gradient(90deg, transparent 30%, red 30%, red 35%, transparent 35%, transparent 65%, red 65%, red 70%, transparent 70%),
-                                linear-gradient(transparent 45%, red 45%, red 55%, transparent 55%)`
-                  }}></div>
-                </div>
-                <span>English</span>
-              </button>
             </div>
           </div>
         </div>
@@ -121,10 +143,10 @@ export default function Navbar() {
               </a>
             </div>
 
-            {/* CTA Buttons - BLACK BG */}
+            {/* CTA Buttons - White bg with border & Black bg */}
             <div className="hidden lg:flex items-center gap-3 4k:gap-6 flex-shrink-0">
-              <button className="px-5 xl:px-6 4k:px-12 py-2.5 xl:py-3 4k:py-6 text-sm xl:text-[15px] 4k:text-2xl font-medium text-white bg-black rounded-lg hover:bg-gray-800 transition-all whitespace-nowrap">
-                Book an Appointment
+              <button className="px-5 xl:px-6 4k:px-12 py-2.5 xl:py-3 4k:py-6 text-sm xl:text-[15px] 4k:text-2xl font-medium text-black bg-white border-2 border-black rounded-lg hover:bg-gray-50 transition-all whitespace-nowrap">
+                Book Appointment
               </button>
               <button className="px-5 xl:px-6 4k:px-12 py-2.5 xl:py-3 4k:py-6 text-sm xl:text-[15px] 4k:text-2xl font-medium text-white bg-black rounded-lg hover:bg-gray-800 transition-all whitespace-nowrap">
                 Login
@@ -170,8 +192,8 @@ export default function Navbar() {
               </a>
               
               <div className="pt-4 space-y-3 border-t border-gray-100 mt-4">
-                <button className="w-full px-4 py-3 text-base text-white bg-black rounded-lg hover:bg-gray-800 transition-colors">
-                  Book an Appointment
+                <button className="w-full px-4 py-3 text-base text-black bg-white border-2 border-black rounded-lg hover:bg-gray-50 transition-colors">
+                  Book Appointment
                 </button>
                 <button className="w-full px-4 py-3 text-base text-white bg-black rounded-lg hover:bg-gray-800 transition-colors">
                   Login
