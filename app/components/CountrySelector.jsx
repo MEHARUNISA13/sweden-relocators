@@ -43,7 +43,7 @@ const PlaneIconWrapper = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   position: 'relative',
-  margin: '3rem 0', // keep original (don’t touch animation alignment)
+  margin: '3rem 0',
   width: '100%',
   [theme.breakpoints.up('lg')]: {
     margin: 0,
@@ -57,16 +57,16 @@ const DashedLine = styled(Box)(({ theme }) => ({
   height: '3px',
   background: 'repeating-linear-gradient(to right, #000000 0, #000000 15px, transparent 15px, transparent 30px)',
   [theme.breakpoints.up('lg')]: {
-    width: '28rem',
+    width: '24rem',
     height: '4px',
     background: 'repeating-linear-gradient(to right, #000000 0, #000000 20px, transparent 20px, transparent 40px)',
   },
   [theme.breakpoints.up('xl')]: {
-    width: '32rem',
+    width: '28rem',
     height: '4px',
   },
   [theme.breakpoints.up('4k')]: {
-    width: '40rem',
+    width: '36rem',
     height: '6px',
   },
 }));
@@ -86,7 +86,7 @@ const PlaneCircle = styled(Box)(({ theme }) => ({
   left: '0',
   top: '50%',
   zIndex: 10,
-  transition: 'left 0.8s cubic-bezier(0.4, 0, 0.2, 1)', // keep plane smooth
+  transition: 'left 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
 }));
 
 const WatermarkText = styled(Typography)(({ theme }) => ({
@@ -134,7 +134,7 @@ export default function CountrySelector() {
       <li key={key} {...otherProps}>
         <FlagIcon
           code={country.code}
-          sx={{ mr: 0.75, width: 22, height: 22, borderRadius: '50%', objectFit: 'cover' }} // tighter
+          sx={{ mr: 0.75, width: 22, height: 22, borderRadius: '50%', objectFit: 'cover' }}
         />
         {country.label}
       </li>
@@ -155,7 +155,7 @@ export default function CountrySelector() {
         InputProps={{
           ...params.InputProps,
           startAdornment: country?.code ? (
-            <InputAdornment position="start" sx={{ mr: 0.5 }}> {/* tighter flag-text spacing */}
+            <InputAdornment position="start" sx={{ mr: 0.5 }}>
               <FlagIcon
                 code={country.code}
                 sx={{ width: 24, height: 24, borderRadius: '50%', objectFit: 'cover' }}
@@ -194,7 +194,7 @@ export default function CountrySelector() {
     <Box
       component="section"
       sx={{
-        pt: { xs: 3, sm: 4, lg: 6, xl: 8 }, // reduced top gap only
+        pt: { xs: 3, sm: 4, lg: 6, xl: 8 },
         pb: { xs: 6, sm: 8, lg: 10, xl: 12 },
         backgroundColor: '#ffffff',
         display: 'flex',
@@ -209,13 +209,13 @@ export default function CountrySelector() {
         sx={{
           maxWidth: { lg: '1400px', '2xl': '1600px', '4k': '2400px' },
           mx: 'auto',
-          px: { xs: 4, sm: 6, lg: 8, xl: 12, '4k': 24 },
+          px: { xs: 3, sm: 4, lg: 6, xl: 10, '4k': 20 },
           width: '100%',
           position: 'relative',
           zIndex: 1,
         }}
       >
-        <Box sx={{ textAlign: 'center', mb: { xs: 3, sm: 4, lg: 6, xl: 8 } }}> {/* reduced mb */}
+        <Box sx={{ textAlign: 'center', mb: { xs: 3, sm: 4, lg: 6, xl: 8 } }}>
           <Typography
             variant="h2"
             sx={{
@@ -249,7 +249,7 @@ export default function CountrySelector() {
           }}
         >
           {/* From */}
-          <Box sx={{ width: '100%', maxWidth: { lg: '22rem', xl: '24rem' }, flexShrink: 0 }}>
+          <Box sx={{ width: '100%', maxWidth: { lg: '20rem', xl: '22rem' }, flexShrink: 0 }}>
             <Typography
               sx={{
                 fontSize: { xs: '0.875rem', lg: '0.95rem' },
@@ -271,8 +271,8 @@ export default function CountrySelector() {
             />
           </Box>
 
-          {/* Plane (unchanged animation!) */}
-          <PlaneIconWrapper sx={{ px: { xs: 0, lg: 4 }, flexShrink: 0, pb: { lg: '0.75rem' } }}>
+          {/* Plane */}
+          <PlaneIconWrapper sx={{ px: { xs: 0, lg: 3 }, flexShrink: 0, pb: { lg: '0.75rem' } }}>
             <DashedLine>
               <PlaneCircle sx={{ left: getPlanePosition(), transform: 'translate(-50%, -50%)' }}>
                 <svg 
@@ -287,7 +287,7 @@ export default function CountrySelector() {
           </PlaneIconWrapper>
 
           {/* To */}
-          <Box sx={{ width: '100%', maxWidth: { lg: '22rem', xl: '24rem' }, flexShrink: 0 }}>
+          <Box sx={{ width: '100%', maxWidth: { lg: '20rem', xl: '22rem' }, flexShrink: 0 }}>
             <Typography
               sx={{
                 fontSize: { xs: '0.875rem', lg: '0.95rem' },
