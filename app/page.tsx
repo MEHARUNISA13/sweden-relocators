@@ -1,13 +1,9 @@
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import CountrySelector from './components/CountrySelector';
+import Home from './components/Home';
 
-export default function Home() {
+export default function HomePage() {
   return (
     <main className="min-h-screen bg-white">
-      <Navbar />
-      <Hero />
-      <CountrySelector />
+      <Home />
     </main>
   );
 }

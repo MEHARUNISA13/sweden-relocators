@@ -43,50 +43,54 @@ const PlaneIconWrapper = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   position: 'relative',
-  margin: '3rem 0',
+  margin: '1rem 0',
   width: '100%',
+  minHeight: '60px',
+  paddingBottom: '1.5rem',
   [theme.breakpoints.up('lg')]: {
-    margin: 0,
+    margin: '0 1.5rem',
     width: 'auto',
+    minHeight: 'auto',
+    paddingBottom: '0',
   },
 }));
 
 const DashedLine = styled(Box)(({ theme }) => ({
   position: 'relative',
   width: '100%',
-  height: '3px',
-  background: 'repeating-linear-gradient(to right, #000000 0, #000000 15px, transparent 15px, transparent 30px)',
+  height: '2px',
+  background: 'repeating-linear-gradient(to right, #3b82f6 0, #3b82f6 12px, transparent 12px, transparent 24px)',
   [theme.breakpoints.up('lg')]: {
-    width: '24rem',
-    height: '4px',
-    background: 'repeating-linear-gradient(to right, #000000 0, #000000 20px, transparent 20px, transparent 40px)',
+    width: '28rem',
+    height: '2px',
+    background: 'repeating-linear-gradient(to right, #3b82f6 0, #3b82f6 14px, transparent 14px, transparent 28px)',
   },
   [theme.breakpoints.up('xl')]: {
-    width: '28rem',
-    height: '4px',
+    width: '32rem',
+    height: '3px',
   },
   [theme.breakpoints.up('4k')]: {
-    width: '36rem',
-    height: '6px',
+    width: '44rem',
+    height: '4px',
   },
 }));
 
 const PlaneCircle = styled(Box)(({ theme }) => ({
-  width: '4rem',
-  height: '4rem',
+  width: { xs: '3rem', lg: '3.2rem' },
+  height: { xs: '3rem', lg: '3.2rem' },
   borderRadius: '50%',
-  border: '3px solid #3b82f6',
+  border: '2px solid #3b82f6',
   backgroundColor: '#ffffff',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   flexShrink: 0,
-  boxShadow: '0 0 0 8px rgba(59, 130, 246, 0.1)',
+  boxShadow: '0 2px 8px rgba(59, 130, 246, 0.2)',
   position: 'absolute',
   left: '0',
   top: '50%',
   zIndex: 10,
-  transition: 'left 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+  transition: 'left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
 }));
 
 const WatermarkText = styled(Typography)(({ theme }) => ({
@@ -94,19 +98,22 @@ const WatermarkText = styled(Typography)(({ theme }) => ({
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  fontSize: '8rem',
+  fontSize: '6rem',
   fontWeight: 900,
-  color: 'rgba(203, 213, 225, 0.15)',
+  color: 'rgba(59, 130, 246, 0.06)',
   letterSpacing: '0.1em',
   userSelect: 'none',
   pointerEvents: 'none',
   whiteSpace: 'nowrap',
   zIndex: 0,
   [theme.breakpoints.up('md')]: {
-    fontSize: '12rem',
+    fontSize: '9rem',
   },
   [theme.breakpoints.up('lg')]: {
-    fontSize: '16rem',
+    fontSize: '12rem',
+  },
+  [theme.breakpoints.up('4k')]: {
+    fontSize: '18rem',
   },
 }));
 
@@ -207,7 +214,7 @@ export default function CountrySelector() {
 
       <Box
         sx={{
-          maxWidth: { lg: '1400px', '2xl': '1600px', '4k': '2400px' },
+          maxWidth: { lg: '1000px', '2xl': '1200px', '4k': '1800px' },
           mx: 'auto',
           px: { xs: 3, sm: 4, lg: 6, xl: 10, '4k': 20 },
           width: '100%',
@@ -243,16 +250,16 @@ export default function CountrySelector() {
           sx={{
             display: 'flex',
             flexDirection: { xs: 'column', lg: 'row' },
-            alignItems: { xs: 'stretch', lg: 'flex-end' },
-            justifyContent: { xs: 'flex-start', lg: 'space-between' },
-            gap: { xs: 2, lg: 3 },
+            alignItems: { xs: 'stretch', lg: 'center' },
+            justifyContent: 'center',
+            gap: { xs: 2, lg: 1.5, xl: 2 },
           }}
         >
           {/* From */}
-          <Box sx={{ width: '100%', maxWidth: { lg: '20rem', xl: '22rem' }, flexShrink: 0 }}>
+          <Box sx={{ width: '100%', maxWidth: { xs: '280px', lg: '240px', xl: '260px', '4k': '320px' }, mx: 'auto', lg: { mx: 0 } }}>
             <Typography
               sx={{
-                fontSize: { xs: '0.875rem', lg: '0.95rem' },
+                fontSize: { xs: '0.875rem', lg: '0.95rem', '4k': '1.1rem' },
                 fontWeight: 600,
                 mb: 1,
                 color: '#1e293b',
@@ -272,7 +279,7 @@ export default function CountrySelector() {
           </Box>
 
           {/* Plane */}
-          <PlaneIconWrapper sx={{ px: { xs: 0, lg: 3 }, flexShrink: 0, pb: { lg: '0.75rem' } }}>
+          <PlaneIconWrapper sx={{ px: { xs: 0, lg: 3 }, flexShrink: 0, pb: { xs: '2.5rem', lg: 0 } }}>
             <DashedLine>
               <PlaneCircle sx={{ left: getPlanePosition(), transform: 'translate(-50%, -50%)' }}>
                 <svg 
@@ -287,10 +294,10 @@ export default function CountrySelector() {
           </PlaneIconWrapper>
 
           {/* To */}
-          <Box sx={{ width: '100%', maxWidth: { lg: '20rem', xl: '22rem' }, flexShrink: 0 }}>
+          <Box sx={{ width: '100%', maxWidth: { xs: '280px', lg: '240px', xl: '260px', '4k': '320px' }, mx: 'auto', lg: { mx: 0 } }}>
             <Typography
               sx={{
-                fontSize: { xs: '0.875rem', lg: '0.95rem' },
+                fontSize: { xs: '0.875rem', lg: '0.95rem', '4k': '1.1rem' },
                 fontWeight: 600,
                 mb: 1,
                 color: '#1e293b',

@@ -2,86 +2,106 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
+import LanguageSelector from './LanguageSelector';
+
+interface DropdownMenu {
+  [key: string]: boolean;
+}
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [languageSelectorOpen, setLanguageSelectorOpen] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState('en');
+  const [openDropdowns, setOpenDropdowns] = useState<DropdownMenu>({
+    services: false,
+    housing: false,
+    assessment: false,
+  });
+
+  const toggleDropdown = (key: string) => {
+    setOpenDropdowns(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  };
+
+  const closeAllDropdowns = () => {
+    setOpenDropdowns({ services: false, housing: false, assessment: false });
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
       
       {/* Top Info Bar with Scrolling Animation */}
-      <div className="bg-gray-50 border-b border-gray-200 overflow-hidden">
+      <div className="bg-gray-50 border-b-2 border-gray-300 shadow-sm overflow-hidden">
         <style jsx>{`
           @keyframes scroll {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
           }
           .animate-scroll {
-            animation: scroll 20s linear infinite;
+            animation: scroll 25s linear infinite;
+            display: flex;
           }
           .animate-scroll:hover {
             animation-play-state: paused;
           }
+          .scroll-item {
+            white-space: nowrap;
+            flex-shrink: 0;
+          }
         `}</style>
         
         <div className="max-w-[1400px] 2xl:max-w-[1600px] 4k:max-w-[2400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 4k:px-24">
-          <div className="flex items-center justify-between h-9 sm:h-10 4k:h-16 text-[11px] sm:text-xs 4k:text-xl text-gray-600">
+          <div className="flex items-center justify-between h-9 sm:h-10 4k:h-16 text-[11px] sm:text-xs 4k:text-xl text-gray-700">
             
             {/* Left side stats with animation */}
-            <div className="hidden md:flex items-center gap-4 lg:gap-6 4k:gap-12 overflow-hidden flex-1">
-              <div className="flex items-center gap-4 lg:gap-6 4k:gap-12 animate-scroll">
-                <span className="whitespace-nowrap">Employment Rate: 69.6%</span>
-                <span className="whitespace-nowrap">Education Rate: 85.2%</span>
-                <span className="whitespace-nowrap">Gender Ratio: 1:1</span>
-                <span className="flex items-center gap-1.5 4k:gap-3">
+            <div className="hidden md:flex items-center overflow-hidden flex-1">
+              <div className="flex items-center gap-8 lg:gap-12 4k:gap-16 animate-scroll">
+                {/* First set */}
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg font-medium">Employment Rate: 69.6%</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg font-medium">Education Rate: 85.2%</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg font-medium">Gender Ratio: 1:1</span>
+                <span className="scroll-item flex items-center gap-2 4k:gap-3 text-xs lg:text-sm 4k:text-lg font-medium">
                   <span className="text-base 4k:text-2xl">🇸🇪</span>
                   <span>Sweden</span>
                 </span>
-                <span className="whitespace-nowrap">GDP: US$ 610.1 billion</span>
-                <span className="whitespace-nowrap">Total Population: 10.65 million</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg font-medium">GDP: US$ 610.1 billion</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg font-medium">Total Population: 10.65 million</span>
+                
                 {/* Duplicate for seamless loop */}
-                <span className="whitespace-nowrap">Employment Rate: 69.6%</span>
-                <span className="whitespace-nowrap">Education Rate: 85.2%</span>
-                <span className="whitespace-nowrap">Gender Ratio: 1:1</span>
-                <span className="flex items-center gap-1.5 4k:gap-3">
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg font-medium">Employment Rate: 69.6%</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg font-medium">Education Rate: 85.2%</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg font-medium">Gender Ratio: 1:1</span>
+                <span className="scroll-item flex items-center gap-2 4k:gap-3 text-xs lg:text-sm 4k:text-lg font-medium">
                   <span className="text-base 4k:text-2xl">🇸🇪</span>
                   <span>Sweden</span>
                 </span>
-                <span className="whitespace-nowrap">GDP: US$ 610.1 billion</span>
-                <span className="whitespace-nowrap">Total Population: 10.65 million</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg font-medium">GDP: US$ 610.1 billion</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg font-medium">Total Population: 10.65 million</span>
               </div>
             </div>
             
-            {/* RIGHT side - US English flag only */}
+            {/* RIGHT side - Language Selector */}
             <div className="ml-auto flex items-center gap-4 lg:gap-6 4k:gap-12">
-              <div className="flex items-center gap-2 4k:gap-4">
-                <div className="w-5 h-4 4k:w-10 4k:h-8 bg-white border border-gray-300 rounded-sm relative overflow-hidden">
-                  {/* Red and White Stripes */}
-                  <div className="absolute inset-0 flex flex-col">
-                    <div className="flex-1 bg-red-600"></div>
-                    <div className="flex-1 bg-white"></div>
-                    <div className="flex-1 bg-red-600"></div>
-                    <div className="flex-1 bg-white"></div>
-                    <div className="flex-1 bg-red-600"></div>
-                    <div className="flex-1 bg-white"></div>
-                    <div className="flex-1 bg-red-600"></div>
-                  </div>
-                  {/* Blue Canton */}
-                  <div className="absolute top-0 left-0 w-[40%] h-[55%] bg-blue-900"></div>
-                </div>
-                <span className="text-gray-700 font-medium">US English</span>
-              </div>
+              <button
+                onClick={() => setLanguageSelectorOpen(true)}
+                className="flex items-center gap-2 4k:gap-4 px-3 py-2 lg:px-4 lg:py-2.5 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                <img
+                  src={`https://flagcdn.com/w40/us.png`}
+                  alt="Language"
+                  className="w-5 h-4 4k:w-10 4k:h-8 rounded-sm object-cover"
+                />
+                <span className="text-sm lg:text-base 4k:text-xl text-gray-700 font-medium hidden sm:inline">English</span>
+              </button>
             </div>
           </div>
         </div>
       </div>
 
       {/* Main Navigation */}
-      <div className="bg-white">
+      <div className="bg-white shadow-md">
         <div className="max-w-[1400px] 2xl:max-w-[1600px] 4k:max-w-[2400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 4k:px-24">
           <div className="flex items-center justify-between h-16 sm:h-20 4k:h-32">
             
@@ -100,6 +120,22 @@ export default function Navbar() {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-5 xl:gap-7 4k:gap-14">
+              <style jsx>{`
+                @keyframes slideDown {
+                  from {
+                    opacity: 0;
+                    transform: translateY(-12px);
+                  }
+                  to {
+                    opacity: 1;
+                    transform: translateY(0);
+                  }
+                }
+                .dropdown-menu {
+                  animation: slideDown 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+                }
+              `}</style>
+              
               <a 
                 href="/new-in-sweden" 
                 className="text-sm xl:text-[15px] 4k:text-2xl text-gray-700 hover:text-blue-600 transition-colors whitespace-nowrap font-medium"
@@ -107,12 +143,62 @@ export default function Navbar() {
                 New in Sweden
               </a>
               
-              <button className="flex items-center gap-1 text-sm xl:text-[15px] 4k:text-2xl text-gray-700 hover:text-blue-600 transition-colors whitespace-nowrap font-medium">
-                Services
-                <svg className="w-4 h-4 4k:w-7 4k:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
+              {/* Services Dropdown */}
+              <div className="relative group">
+                <button 
+                  className="flex items-center gap-1 text-sm xl:text-[15px] 4k:text-2xl text-gray-700 hover:text-blue-600 transition-colors whitespace-nowrap font-medium"
+                  onMouseEnter={() => toggleDropdown('services')}
+                  onMouseLeave={closeAllDropdowns}
+                >
+                  Services
+                  <svg className={`w-4 h-4 4k:w-7 4k:h-7 transition-transform duration-200 ${openDropdowns.services ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {openDropdowns.services && (
+                  <div 
+                    className="dropdown-menu absolute left-0 mt-2 w-96 4k:w-[32rem] bg-white rounded-lg shadow-2xl border border-gray-200 py-6 px-6 z-50"
+                    onMouseEnter={() => toggleDropdown('services')}
+                    onMouseLeave={closeAllDropdowns}
+                  >
+                    <div className="space-y-4">
+                      <div className="pb-4 border-b border-gray-100">
+                        <h3 className="font-bold text-gray-800 mb-3 text-xs 4k:text-sm tracking-wider">IMMIGRATION</h3>
+                        <a href="#" className="block px-3 py-2.5 text-sm 4k:text-base text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded transition-colors">
+                          <div className="font-semibold">Asylum</div>
+                          <div className="text-xs text-gray-600 mt-0.5">You must be in Sweden to apply for asylum</div>
+                        </a>
+                        <a href="#" className="block px-3 py-2.5 text-sm 4k:text-base text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded transition-colors">
+                          <div className="font-semibold">Relocate to Sweden</div>
+                          <div className="text-xs text-gray-600 mt-0.5">Personal identification number</div>
+                        </a>
+                        <a href="#" className="block px-3 py-2.5 text-sm 4k:text-base text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded transition-colors">
+                          <div className="font-semibold">Work Permit</div>
+                          <div className="text-xs text-gray-600 mt-0.5">Work permit refers to a legal document</div>
+                        </a>
+                      </div>
+                      <div className="pb-4 border-b border-gray-100">
+                        <h3 className="font-bold text-gray-800 mb-3 text-xs 4k:text-sm tracking-wider">BUSINESS</h3>
+                        <a href="#" className="block px-3 py-2.5 text-sm 4k:text-base text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded transition-colors">
+                          <div className="font-semibold">Business Permit</div>
+                          <div className="text-xs text-gray-600 mt-0.5">Swedish business culture and practices</div>
+                        </a>
+                        <a href="#" className="block px-3 py-2.5 text-sm 4k:text-base text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded transition-colors">
+                          <div className="font-semibold">Company Registration</div>
+                          <div className="text-xs text-gray-600 mt-0.5">If you're planning to register a company</div>
+                        </a>
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-gray-800 mb-3 text-xs 4k:text-sm tracking-wider">FAMILY</h3>
+                        <a href="#" className="block px-3 py-2.5 text-sm 4k:text-base text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded transition-colors">
+                          <div className="font-semibold">Family Reunification</div>
+                          <div className="text-xs text-gray-600 mt-0.5">Family reunification is a legal process</div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
               
               <a 
                 href="/about" 
@@ -121,19 +207,109 @@ export default function Navbar() {
                 About us
               </a>
               
-              <button className="flex items-center gap-1 text-sm xl:text-[15px] 4k:text-2xl text-gray-700 hover:text-blue-600 transition-colors whitespace-nowrap font-medium">
-                Housing
-                <svg className="w-4 h-4 4k:w-7 4k:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
+              {/* Housing Dropdown */}
+              <div className="relative group">
+                <button 
+                  className="flex items-center gap-1 text-sm xl:text-[15px] 4k:text-2xl text-gray-700 hover:text-blue-600 transition-colors whitespace-nowrap font-medium"
+                  onMouseEnter={() => toggleDropdown('housing')}
+                  onMouseLeave={closeAllDropdowns}
+                >
+                  Housing
+                  <svg className={`w-4 h-4 4k:w-7 4k:h-7 transition-transform duration-200 ${openDropdowns.housing ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {openDropdowns.housing && (
+                  <div 
+                    className="dropdown-menu absolute left-0 mt-2 w-[28rem] 4k:w-[32rem] bg-white rounded-lg shadow-2xl border border-gray-200 py-6 px-6 z-50"
+                    onMouseEnter={() => toggleDropdown('housing')}
+                    onMouseLeave={closeAllDropdowns}
+                  >
+                    <div className="grid grid-cols-2 gap-8">
+                      <div>
+                        <h3 className="font-bold text-gray-800 mb-3 text-xs 4k:text-sm tracking-wider">AVAILABLE HOUSING</h3>
+                        <a href="#" className="block px-2 py-2.5 text-sm 4k:text-base text-gray-700 hover:text-blue-600 transition-colors">
+                          <div className="font-semibold">Available Housing</div>
+                          <div className="text-xs text-gray-600 mt-0.5">Browse all available housing options</div>
+                        </a>
+                        <a href="#" className="block px-2 py-2.5 text-sm 4k:text-base text-gray-700 hover:text-blue-600 transition-colors">
+                          <div className="font-semibold">Rental Apartments</div>
+                          <div className="text-xs text-gray-600 mt-0.5">Find furnished and unfurnished apartments</div>
+                        </a>
+                        <a href="#" className="block px-2 py-2.5 text-sm 4k:text-base text-gray-700 hover:text-blue-600 transition-colors">
+                          <div className="font-semibold">Student Housing</div>
+                          <div className="text-xs text-gray-600 mt-0.5">Housing dedicated for students</div>
+                        </a>
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-gray-800 mb-3 text-xs 4k:text-sm tracking-wider">LOOKING FOR HOUSING</h3>
+                        <a href="#" className="block px-2 py-2.5 text-sm 4k:text-base text-gray-700 hover:text-blue-600 transition-colors">
+                          <div className="font-semibold">Housing Search</div>
+                          <div className="text-xs text-gray-600 mt-0.5">Let us help you find the right home</div>
+                        </a>
+                        <a href="#" className="block px-2 py-2.5 text-sm 4k:text-base text-gray-700 hover:text-blue-600 transition-colors">
+                          <div className="font-semibold">Roommate Matching</div>
+                          <div className="text-xs text-gray-600 mt-0.5">Find compatible roommates and shared housing</div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
               
-              <button className="flex items-center gap-1 text-sm xl:text-[15px] 4k:text-2xl text-gray-700 hover:text-blue-600 transition-colors whitespace-nowrap font-medium">
-                Assessment
-                <svg className="w-4 h-4 4k:w-7 4k:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
+              {/* Assessment Dropdown */}
+              <div className="relative group">
+                <button 
+                  className="flex items-center gap-1 text-sm xl:text-[15px] 4k:text-2xl text-gray-700 hover:text-blue-600 transition-colors whitespace-nowrap font-medium"
+                  onMouseEnter={() => toggleDropdown('assessment')}
+                  onMouseLeave={closeAllDropdowns}
+                >
+                  Assessment
+                  <svg className={`w-4 h-4 4k:w-7 4k:h-7 transition-transform duration-200 ${openDropdowns.assessment ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {openDropdowns.assessment && (
+                  <div 
+                    className="dropdown-menu absolute left-0 mt-2 w-[28rem] 4k:w-[32rem] bg-white rounded-lg shadow-2xl border border-gray-200 py-6 px-6 z-50"
+                    onMouseEnter={() => toggleDropdown('assessment')}
+                    onMouseLeave={closeAllDropdowns}
+                  >
+                    <div className="grid grid-cols-2 gap-8">
+                      <div>
+                        <h3 className="font-bold text-gray-800 mb-3 text-xs 4k:text-sm tracking-wider">VISA ASSESSMENTS</h3>
+                        <a href="#" className="block px-2 py-2.5 text-sm 4k:text-base text-gray-700 hover:text-blue-600 transition-colors">
+                          <div className="font-semibold">Business Visa</div>
+                          <div className="text-xs text-gray-600 mt-0.5">Business visa allows travel for business purposes</div>
+                        </a>
+                        <a href="#" className="block px-2 py-2.5 text-sm 4k:text-base text-gray-700 hover:text-blue-600 transition-colors">
+                          <div className="font-semibold">Visit Visa</div>
+                          <div className="text-xs text-gray-600 mt-0.5">Visit visa allows short stays in Sweden</div>
+                        </a>
+                        <a href="#" className="block px-2 py-2.5 text-sm 4k:text-base text-gray-700 hover:text-blue-600 transition-colors">
+                          <div className="font-semibold">Student Visa</div>
+                          <div className="text-xs text-gray-600 mt-0.5">Student visa allows studying in Sweden</div>
+                        </a>
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-gray-800 mb-3 text-xs 4k:text-sm tracking-wider">PERMITS AND STATUS</h3>
+                        <a href="#" className="block px-2 py-2.5 text-sm 4k:text-base text-gray-700 hover:text-blue-600 transition-colors">
+                          <div className="font-semibold">Family Reunification</div>
+                          <div className="text-xs text-gray-600 mt-0.5">Family reunification visa allows family members to join</div>
+                        </a>
+                        <a href="#" className="block px-2 py-2.5 text-sm 4k:text-base text-gray-700 hover:text-blue-600 transition-colors">
+                          <div className="font-semibold">Work Permit</div>
+                          <div className="text-xs text-gray-600 mt-0.5">Work permit authorizes employment in Sweden</div>
+                        </a>
+                        <a href="#" className="block px-2 py-2.5 text-sm 4k:text-base text-gray-700 hover:text-blue-600 transition-colors">
+                          <div className="font-semibold">Long-term EU Residence</div>
+                          <div className="text-xs text-gray-600 mt-0.5">Long-term residence status for long-term residents</div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
               
               <a 
                 href="/contact" 
@@ -159,11 +335,11 @@ export default function Navbar() {
               className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
               aria-label="Toggle menu"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                 {isOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 )}
               </svg>
             </button>
@@ -203,6 +379,14 @@ export default function Navbar() {
           )}
         </div>
       </div>
+
+      {/* Language Selector Modal */}
+      <LanguageSelector
+        open={languageSelectorOpen}
+        onClose={() => setLanguageSelectorOpen(false)}
+        currentLanguage={currentLanguage}
+        onLanguageChange={(code) => setCurrentLanguage(code)}
+      />
     </nav>
   );
 }

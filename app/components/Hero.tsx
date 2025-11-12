@@ -1,8 +1,22 @@
 'use client';
 
+const fadeInUp = `
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
+
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-white via-[#f9fbff] to-[#dbe9ff]">
+      <style>{fadeInUp}</style>
       
       {/* Top spacing = navbar height + extra breathing */}
       <div className="pt-[160px] sm:pt-[180px] lg:pt-[200px] xl:pt-[220px] 4k:pt-[260px] pb-20 sm:pb-24 lg:pb-28 xl:pb-32 3xl:pb-36 4k:pb-40">
@@ -12,7 +26,7 @@ export default function Hero() {
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-14 xl:gap-16 2xl:gap-20 3xl:gap-24 4k:gap-32 items-center">
             
             {/* LEFT SIDE */}
-            <div className="space-y-6 sm:space-y-7 md:space-y-8 lg:space-y-9 3xl:space-y-12 4k:space-y-16">
+            <div className="space-y-6 sm:space-y-7 md:space-y-8 lg:space-y-9 3xl:space-y-12 4k:space-y-16" style={{ animation: 'fadeInUp 0.8s ease-out' }}>
               
               <h1 className="text-[2rem] sm:text-[2.5rem] md:text-[2.75rem] lg:text-[3.25rem] xl:text-[3.5rem] 2xl:text-[3.75rem] 3xl:text-[4.5rem] 4k:text-[7rem] leading-[1.15] font-bold">
                 <span className="block text-gray-900">Relocate To Sweden</span>
@@ -38,7 +52,7 @@ export default function Hero() {
             </div>
 
             {/* RIGHT SIDE - SUPER SIMPLE VIDEO */}
-            <div className="relative w-full max-w-2xl 3xl:max-w-3xl 4k:max-w-6xl mx-auto lg:mx-0 lg:ml-auto">
+            <div className="relative w-full max-w-2xl 3xl:max-w-3xl 4k:max-w-6xl mx-auto lg:mx-0 lg:ml-auto" style={{ animation: 'fadeInUp 0.8s ease-out 0.2s both' }}>
               
               {/* Simple video with rounded corners - NO frame, NO badge, NOTHING */}
               <div className="relative rounded-2xl sm:rounded-3xl 3xl:rounded-[2.5rem] 4k:rounded-[4rem] overflow-hidden shadow-2xl">

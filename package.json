@@ -12,6 +12,7 @@
     "@emotion/react": "^11.x.x",
     "@emotion/styled": "^11.x.x",
     "@iconify/react": "^4.x.x",
+    "@mui/icons-material": "^5.x.x",
     "@mui/material": "^5.x.x",
     "@mui/material-nextjs": "^7.3.5",
     "lucide-react": "^0.553.0",
