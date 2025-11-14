@@ -4,7 +4,7 @@ import Hero from './Hero';
 import CountrySelector from './CountrySelector';
 import Services from './Services';
 import Offers from './Offers';
-import { HousingSolutionShared } from './HousingSolutionShared';
+import { HousingCarousel } from './HousingCarousel';
 import { MovingFlagsCarousel } from './MovingFlagsCarousel';
 import { GlobalVisaPlatform } from './GlobalVisaPlatform';
 
@@ -15,7 +15,7 @@ export default function Home() {
       <CountrySelector />
       <Services />
       <Offers />
-      <HousingSolutionShared />
+      <HousingCarousel />
       <MovingFlagsCarousel />
       <GlobalVisaPlatform />
     </>
