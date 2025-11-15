@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import theme from './theme';
 import './globals.css';
+import ClientI18nProvider from './ClientI18nProvider';
 
 export const metadata = {
   title: 'Sweden Relocators',
@@ -22,9 +23,11 @@ export default function RootLayout({
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Navbar />
-            {children}
-            <Footer />
+            <ClientI18nProvider>
+              <Navbar />
+              {children}
+              <Footer />
+            </ClientI18nProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>

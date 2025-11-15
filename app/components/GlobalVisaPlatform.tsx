@@ -14,15 +14,8 @@ export function GlobalVisaPlatform() {
         backgroundColor: '#f8fafc',
       }}
     >
-      {/* EXACT same container as Hero and Navbar */}
-      <Box
-        sx={{
-          maxWidth: { lg: '87.5rem', '2xl': '100rem', '4k': '150rem' }, // 1400px, 1600px, 2400px
-          mx: 'auto',
-          px: { xs: '1rem', sm: '1.5rem', lg: '2rem', xl: '3rem', '4k': '6rem' }, // 16px, 24px, 32px, 48px, 96px
-          width: '100%',
-        }}
-      >
+      {/* EXACT same container as Hero/Services (Tailwind classes) */}
+      <div className="max-w-[1400px] 2xl:max-w-[1600px] 4k:max-w-[2400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 4k:px-24">
         {/* Header - Centered Title Section */}
         <Box
           sx={{
@@ -46,7 +39,7 @@ export function GlobalVisaPlatform() {
           <Typography
             sx={{
               fontSize: { xs: '2rem', sm: '2.75rem', md: '3rem', lg: '3.5rem', '4k': '5rem' },
-              fontWeight: 800,
+              fontWeight: 500,
               color: '#3b82f6',
               mb: '0.5rem',
               lineHeight: 1.2,
@@ -59,7 +52,7 @@ export function GlobalVisaPlatform() {
           <Typography
             sx={{
               fontSize: { xs: '1.125rem', sm: '1.5rem', md: '1.75rem', lg: '2rem', '4k': '2.5rem' },
-              fontWeight: 700,
+              fontWeight: 500,
               color: '#1e293b',
               lineHeight: 1.3,
             }}
@@ -179,7 +172,7 @@ export function GlobalVisaPlatform() {
             />
           </Box>
         </Box>
-      </Box>
+      </div>
     </Box>
   );
 }

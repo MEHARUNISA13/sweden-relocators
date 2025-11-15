@@ -7,6 +7,8 @@ import Offers from './Offers';
 import { HousingCarousel } from './HousingCarousel';
 import { MovingFlagsCarousel } from './MovingFlagsCarousel';
 import { GlobalVisaPlatform } from './GlobalVisaPlatform';
+import VisaApplicationJourney from './VisaApplicationJourney';
+import CitizenshipResidencySection from './CitizenshipResidencySection';
 
 export default function Home() {
   return (
@@ -18,6 +20,8 @@ export default function Home() {
       <HousingCarousel />
       <MovingFlagsCarousel />
       <GlobalVisaPlatform />
+      <VisaApplicationJourney />
+      <CitizenshipResidencySection />
     </>
   );
 }

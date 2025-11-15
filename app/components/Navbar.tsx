@@ -3,12 +3,14 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import LanguageSelector from './LanguageSelector';
+import { useTranslation } from 'react-i18next';
 
 interface DropdownMenu {
   [key: string]: boolean;
 }
 
 export default function Navbar() {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [languageSelectorOpen, setLanguageSelectorOpen] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState('en');
@@ -59,26 +61,26 @@ export default function Navbar() {
             <div className="hidden md:flex items-center overflow-hidden flex-1">
               <div className="flex items-center gap-8 lg:gap-12 4k:gap-16 animate-scroll">
                 {/* First set */}
-                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">Employment Rate: 69.6%</span>
-                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">Education Rate: 85.2%</span>
-                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">Gender Ratio: 1:1</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">{t('navbar.topBar.employmentRate')}</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">{t('navbar.topBar.educationRate')}</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">{t('navbar.topBar.genderRatio')}</span>
                 <span className="scroll-item flex items-center gap-2 4k:gap-3 text-xs lg:text-sm 4k:text-lg">
                   <span className="text-base 4k:text-2xl">🇸🇪</span>
-                  <span>Sweden</span>
+                  <span>{t('navbar.topBar.countryName')}</span>
                 </span>
-                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">GDP: US$ 610.1 billion</span>
-                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">Total Population: 10.65 million</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">{t('navbar.topBar.gdp')}</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">{t('navbar.topBar.population')}</span>
                 
                 {/* Duplicate for seamless loop */}
-                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">Employment Rate: 69.6%</span>
-                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">Education Rate: 85.2%</span>
-                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">Gender Ratio: 1:1</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">{t('navbar.topBar.employmentRate')}</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">{t('navbar.topBar.educationRate')}</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">{t('navbar.topBar.genderRatio')}</span>
                 <span className="scroll-item flex items-center gap-2 4k:gap-3 text-xs lg:text-sm 4k:text-lg">
                   <span className="text-base 4k:text-2xl">🇸🇪</span>
-                  <span>Sweden</span>
+                  <span>{t('navbar.topBar.countryName')}</span>
                 </span>
-                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">GDP: US$ 610.1 billion</span>
-                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">Total Population: 10.65 million</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">{t('navbar.topBar.gdp')}</span>
+                <span className="scroll-item whitespace-nowrap text-xs lg:text-sm 4k:text-lg">{t('navbar.topBar.population')}</span>
               </div>
             </div>
             
@@ -93,7 +95,7 @@ export default function Navbar() {
                   alt="Language"
                   className="w-5 h-4 4k:w-10 4k:h-8 rounded-sm object-cover"
                 />
-                <span className="text-sm lg:text-base 4k:text-xl text-gray-700 font-medium hidden sm:inline">English</span>
+                <span className="text-sm lg:text-base 4k:text-xl text-gray-700 font-medium hidden sm:inline">{t('navbar.language.english')}</span>
               </button>
             </div>
           </div>
@@ -139,22 +141,23 @@ export default function Navbar() {
               <a 
                 href="/new-in-sweden" 
                 className="text-sm xl:text-[15px] 4k:text-2xl text-gray-700 hover:text-blue-600 transition-colors whitespace-nowrap font-medium"
-              >
-                New in Sweden
+>
+                {t('navbar.links.newInSweden')}
               </a>
               
-              {/* Services Dropdown - Black headings that don't change on hover */}
+              {/* Services Dropdown - label navigates to /services on click */}
 <div className="relative group">
-  <button 
+  <a
+    href="/services"
     className="flex items-center gap-1 text-sm xl:text-[15px] 4k:text-2xl text-gray-700 hover:text-blue-600 transition-colors whitespace-nowrap font-medium"
     onMouseEnter={() => toggleDropdown('services')}
     onMouseLeave={closeAllDropdowns}
   >
-    Services
+    {t('navbar.links.services')}
     <svg className={`w-4 h-4 4k:w-7 4k:h-7 transition-transform duration-200 ${openDropdowns.services ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
     </svg>
-  </button>
+  </a>
   {openDropdowns.services && (
     <div 
       className="dropdown-menu absolute left-1/2 -translate-x-1/2 mt-2 w-[90vw] max-w-[1000px] bg-white rounded-xl shadow-2xl border border-gray-100 py-10 px-12 z-50"
@@ -261,8 +264,8 @@ export default function Navbar() {
               <a 
                 href="/about" 
                 className="text-sm xl:text-[15px] 4k:text-2xl text-gray-700 hover:text-blue-600 transition-colors whitespace-nowrap font-medium"
-              >
-                About us
+>
+                {t('navbar.links.aboutUs')}
               </a>
               
               {/* Housing Dropdown */}
@@ -271,8 +274,8 @@ export default function Navbar() {
                   className="flex items-center gap-1 text-sm xl:text-[15px] 4k:text-2xl text-gray-700 hover:text-blue-600 transition-colors whitespace-nowrap font-medium"
                   onMouseEnter={() => toggleDropdown('housing')}
                   onMouseLeave={closeAllDropdowns}
-                >
-                  Housing
+>
+                  {t('navbar.links.housing')}
                   <svg className={`w-4 h-4 4k:w-7 4k:h-7 transition-transform duration-200 ${openDropdowns.housing ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                   </svg>
@@ -321,8 +324,8 @@ export default function Navbar() {
                   className="flex items-center gap-1 text-sm xl:text-[15px] 4k:text-2xl text-gray-700 hover:text-blue-600 transition-colors whitespace-nowrap font-medium"
                   onMouseEnter={() => toggleDropdown('assessment')}
                   onMouseLeave={closeAllDropdowns}
-                >
-                  Assessment
+>
+                  {t('navbar.links.assessment')}
                   <svg className={`w-4 h-4 4k:w-7 4k:h-7 transition-transform duration-200 ${openDropdowns.assessment ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                   </svg>
@@ -372,18 +375,18 @@ export default function Navbar() {
               <a 
                 href="/contact" 
                 className="text-sm xl:text-[15px] 4k:text-2xl text-gray-700 hover:text-blue-600 transition-colors whitespace-nowrap font-medium"
-              >
-                Contact us
+>
+                {t('navbar.links.contactUs')}
               </a>
             </div>
 
             {/* CTA Buttons */}
             <div className="hidden lg:flex items-center gap-3 4k:gap-6 flex-shrink-0">
               <button className="px-5 xl:px-6 4k:px-12 py-2.5 xl:py-3 4k:py-6 text-sm xl:text-[15px] 4k:text-2xl font-medium text-black bg-white border-2 border-black rounded-lg hover:bg-gray-50 transition-all whitespace-nowrap">
-                Book Appointment
+                {t('navbar.buttons.bookAppointment')}
               </button>
               <button className="px-5 xl:px-6 4k:px-12 py-2.5 xl:py-3 4k:py-6 text-sm xl:text-[15px] 4k:text-2xl font-medium text-white bg-black rounded-lg hover:bg-gray-800 transition-all whitespace-nowrap">
-                Login
+                {t('navbar.buttons.login')}
               </button>
             </div>
 
@@ -407,30 +410,30 @@ export default function Navbar() {
           {isOpen && (
             <div className="lg:hidden pb-6 pt-2 space-y-1 border-t border-gray-100">
               <a href="/new-in-sweden" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded-lg transition-colors">
-                New in Sweden
+                {t('navbar.links.newInSweden')}
               </a>
               <a href="/services" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded-lg transition-colors">
-                Services
+                {t('navbar.links.services')}
               </a>
               <a href="/about" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded-lg transition-colors">
-                About us
+                {t('navbar.links.aboutUs')}
               </a>
               <a href="/housing" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded-lg transition-colors">
-                Housing
+                {t('navbar.links.housing')}
               </a>
               <a href="/assessment" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded-lg transition-colors">
-                Assessment
+                {t('navbar.links.assessment')}
               </a>
               <a href="/contact" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded-lg transition-colors">
-                Contact us
+                {t('navbar.links.contactUs')}
               </a>
               
               <div className="pt-4 space-y-3 border-t border-gray-100 mt-4">
                 <button className="w-full px-4 py-3 text-base text-black bg-white border-2 border-black rounded-lg hover:bg-gray-50 transition-colors">
-                  Book Appointment
+                  {t('navbar.buttons.bookAppointment')}
                 </button>
                 <button className="w-full px-4 py-3 text-base text-white bg-black rounded-lg hover:bg-gray-800 transition-colors">
-                  Login
+                  {t('navbar.buttons.login')}
                 </button>
               </div>
             </div>

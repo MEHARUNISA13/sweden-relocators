@@ -32,10 +32,10 @@ const housingData: HousingItem[] = [
   {
     id: '1',
     title: 'Short Term Rental',
-    image: '/h1.png',
-    location: 'Malmö',
-    startDate: '21 - 28 Feb 2026',
-    inquiries: 221,
+    image: '/h1.svg',
+    location: 'Bhutan',
+    startDate: '21 Feb - 27 Feb',
+    inquiries: 223,
     price: '€89',
     priceLabel: 'Per Night',
     badgeLabel: 'Per Night',
@@ -48,11 +48,10 @@ const housingData: HousingItem[] = [
   {
     id: '2',
     title: 'Long Term Rental',
-    image: '/h2.png',
-    location: 'Malmö',
-    startDate: '1 Feb 2026',
-    endDate: '31 Jan 2029',
-    inquiries: 153,
+    image: '/h2.svg',
+    location: 'Bhutan',
+    startDate: '21 Feb - 27 Feb',
+    inquiries: 223,
     price: '€850',
     priceLabel: 'Monthly Rent',
     badgeLabel: 'Monthly Rent',
@@ -64,54 +63,22 @@ const housingData: HousingItem[] = [
   {
     id: '3',
     title: 'Sell Your Property',
-    image: '/h3.png',
-    location: 'Malmö',
-    startDate: '15 - 15 Sept 2025',
-    inquiries: 202,
+    image: '/h3.svg',
+    location: 'Bhutan',
+    startDate: '21 Feb - 27 Feb',
+    inquiries: 223,
     badgeLabel: 'List Now',
     primaryButtonText: 'List Now',
     primaryButtonAction: 'list',
     secondaryButtonText: 'Mortgage Support',
     secondaryButtonAction: 'mortgage',
   },
-  {
-    id: '4',
-    title: 'Short Term Rental',
-    image: '/h1.png',
-    location: 'Stockholm',
-    startDate: '15 Mar 2026 - 30 Apr 2026',
-    inquiries: 187,
-    price: '€99',
-    priceLabel: 'Per Night',
-    badgeLabel: 'Per Night',
-    rating: 4.8,
-    primaryButtonText: 'Reserve Now',
-    primaryButtonAction: 'reserve',
-    secondaryButtonText: 'Become A Host',
-    secondaryButtonAction: 'host',
-  },
-  {
-    id: '5',
-    title: 'Long Term Rental',
-    image: '/h2.png',
-    location: 'Stockholm',
-    startDate: '1 Apr 2026',
-    endDate: '31 Mar 2027',
-    inquiries: 176,
-    price: '€1200',
-    priceLabel: 'Monthly Rent',
-    badgeLabel: 'Monthly Rent',
-    primaryButtonText: 'Rent Now',
-    primaryButtonAction: 'rent',
-    secondaryButtonText: 'Sublet Your Property',
-    secondaryButtonAction: 'sublet',
-  },
 ];
 
 export function HousingCarousel() {
   const carousel = useCarousel({
     autoPlay: true,
-    autoPlayInterval: 5000, // Synchronized with Offers carousel
+    autoPlayInterval: 5000,
   });
 
   const handleScroll = (direction: 'left' | 'right') => {
@@ -121,26 +88,20 @@ export function HousingCarousel() {
   return (
     <Box
       sx={{
-        py: { xs: 4, sm: 6, lg: 8, xl: 10 },
+        py: { xs: '80px', sm: '96px', lg: '112px', xl: '128px', '3xl': '144px', '4k': '160px' },
         backgroundColor: '#f8fafc',
       }}
     >
-      <Box
-        sx={{
-          maxWidth: { lg: '1400px', '2xl': '1600px', '4k': '2400px' },
-          mx: 'auto',
-          px: { xs: 4, sm: 6, lg: 8, xl: 12, '4k': 24 },
-          width: '100%',
-        }}
-      >
+      {/* EXACT same container as Hero/Services (Tailwind classes) */}
+      <div className="max-w-[1400px] 2xl:max-w-[1600px] 4k:max-w-[2400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 4k:px-24">
         {/* Header */}
-        <Box sx={{ mb: { xs: 6, sm: 8, lg: 10 }, position: 'relative' }}>
+        <Box sx={{ mb: { xs: '24px', sm: '28px', md: '32px', lg: '36px', '3xl': '48px', '4k': '64px' }, position: 'relative' }}>
           <Typography
             sx={{
-              fontSize: { xs: '0.75rem', sm: '0.875rem', lg: '1rem', '4k': '1.25rem' },
+              fontSize: { xs: '12px', sm: '15px', lg: '17px', '3xl': '20px', '4k': '2rem' },
               color: '#3b82f6',
               fontWeight: 600,
-              mb: 1,
+              mb: { xs: '8px', sm: '10px' },
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
               textAlign: 'center',
@@ -148,11 +109,12 @@ export function HousingCarousel() {
           >
             Find Your Perfect Home
           </Typography>
+          {/* Match Services heading typography: bold black line, slightly smaller blue line */}
           <Typography
             sx={{
-              fontSize: { xs: '1.5rem', sm: '2rem', lg: '2.25rem', '4k': '3.5rem' },
+              fontSize: { xs: '1.75rem', sm: '2rem', lg: '2.5rem', xl: '2.75rem' },
               fontWeight: 800,
-              mb: 1,
+              mb: { xs: '8px', sm: '10px' },
               color: '#000000',
               textAlign: 'center',
               lineHeight: 1.2,
@@ -162,10 +124,11 @@ export function HousingCarousel() {
           </Typography>
           <Typography
             sx={{
-              fontSize: { xs: '1.25rem', sm: '1.75rem', lg: '2rem', '4k': '3rem' },
+              fontSize: { xs: '1.25rem', sm: '1.5rem', lg: '1.75rem', xl: '2rem' },
               fontWeight: 700,
               color: '#3b82f6',
               textAlign: 'center',
+              lineHeight: 1.2,
             }}
           >
             in Sweden & Nordic Region
@@ -173,19 +136,21 @@ export function HousingCarousel() {
         </Box>
 
         {/* Carousel Container */}
-        <Box sx={{ position: 'relative' }}>
-          {/* Left Arrow Button */}
+        <Box sx={{ position: 'relative', overflow: 'hidden' }}>
+          {/* Left Arrow Button - keep inside container edges on all breakpoints */}
           <IconButton
             onClick={() => handleScroll('left')}
             disabled={!carousel.canScrollLeft}
             sx={{
               position: 'absolute',
               top: '50%',
-              left: { xs: -10, md: -20 },
+              left: { xs: 0, md: 0, '3xl': 0, '4k': 0 },
               transform: 'translateY(-50%)',
               zIndex: 10,
               bgcolor: '#1e293b',
               color: 'white',
+              width: { xs: '40px', sm: '44px', md: '48px', '3xl': '56px', '4k': '72px' },
+              height: { xs: '40px', sm: '44px', md: '48px', '3xl': '56px', '4k': '72px' },
               boxShadow: '0 6px 12px rgba(0,0,0,0.15)',
               '&:hover': { 
                 bgcolor: '#0f172a',
@@ -193,24 +158,29 @@ export function HousingCarousel() {
               '&.Mui-disabled': {
                 bgcolor: '#cbd5e1',
                 color: '#94a3b8',
+              },
+              '& svg': {
+                fontSize: { xs: '20px', sm: '22px', md: '24px', '3xl': '28px', '4k': '36px' },
               },
             }}
           >
             <ArrowBackIcon />
           </IconButton>
 
-          {/* Right Arrow Button */}
+          {/* Right Arrow Button - keep inside container edges on all breakpoints */}
           <IconButton
             onClick={() => handleScroll('right')}
             disabled={!carousel.canScrollRight}
             sx={{
               position: 'absolute',
               top: '50%',
-              right: { xs: -10, md: -20 },
+              right: { xs: 0, md: 0, '3xl': 0, '4k': 0 },
               transform: 'translateY(-50%)',
               zIndex: 10,
               bgcolor: '#1e293b',
               color: 'white',
+              width: { xs: '40px', sm: '44px', md: '48px', '3xl': '56px', '4k': '72px' },
+              height: { xs: '40px', sm: '44px', md: '48px', '3xl': '56px', '4k': '72px' },
               boxShadow: '0 6px 12px rgba(0,0,0,0.15)',
               '&:hover': { 
                 bgcolor: '#0f172a',
@@ -218,6 +188,9 @@ export function HousingCarousel() {
               '&.Mui-disabled': {
                 bgcolor: '#cbd5e1',
                 color: '#94a3b8',
+              },
+              '& svg': {
+                fontSize: { xs: '20px', sm: '22px', md: '24px', '3xl': '28px', '4k': '36px' },
               },
             }}
           >
@@ -230,15 +203,27 @@ export function HousingCarousel() {
             onScroll={carousel.onScroll}
             sx={{
               display: 'flex',
-              gap: { xs: 2, sm: 3, lg: 4 },
+              gap: { xs: '8px', sm: '12px', lg: '16px', '3xl': '24px', '4k': '32px' },
               overflowX: 'auto',
               scrollBehavior: 'smooth',
-              pb: 2,
+              pb: { xs: '8px', sm: '12px', md: '16px' },
               px: { xs: 0, md: 0 },
               '&::-webkit-scrollbar': {
                 height: 0,
               },
               scrollSnapType: 'x mandatory',
+              // Smooth fade-up animation when the carousel section mounts
+              '@keyframes housingFadeInUp': {
+                '0%': {
+                  opacity: 0,
+                  transform: 'translateY(24px)',
+                },
+                '100%': {
+                  opacity: 1,
+                  transform: 'translateY(0)',
+                },
+              },
+              animation: 'housingFadeInUp 0.7s ease-out',
             }}
           >
             {housingData.map((item) => (
@@ -246,7 +231,7 @@ export function HousingCarousel() {
             ))}
           </Box>
         </Box>
-      </Box>
+      </div>
     </Box>
   );
 }
@@ -255,11 +240,25 @@ function HousingCard({ item }: { item: HousingItem }) {
   return (
     <Card
       sx={{
-        minWidth: { xs: 240, sm: 280, md: 300, lg: 'calc((100% - 64px)/3)' },
-        maxWidth: { xs: 240, sm: 280, md: 300, lg: 'calc((100% - 64px)/3)' },
+        minWidth: { 
+          xs: '240px', 
+          sm: '280px', 
+          md: '300px', 
+          lg: 'calc((100% - 32px)/3)',
+          '3xl': 'calc((100% - 48px)/3)',
+          '4k': 'calc((100% - 64px)/3)'
+        },
+        maxWidth: { 
+          xs: '240px', 
+          sm: '280px', 
+          md: '300px', 
+          lg: 'calc((100% - 32px)/3)',
+          '3xl': 'calc((100% - 48px)/3)',
+          '4k': 'calc((100% - 64px)/3)'
+        },
         boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
         border: '1px solid #e2e8f0',
-        borderRadius: '16px',
+        borderRadius: { xs: '16px', sm: '18px', '3xl': '24px', '4k': '32px' },
         backgroundColor: '#ffffff',
         overflow: 'hidden',
         transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -274,7 +273,7 @@ function HousingCard({ item }: { item: HousingItem }) {
       <Box
         sx={{
           width: '100%',
-          height: { xs: '160px', sm: '180px', md: '200px', lg: '220px' },
+          height: { xs: '160px', sm: '180px', md: '200px', lg: '220px', '3xl': '280px', '4k': '400px' },
           backgroundColor: '#f0f2f5',
           display: 'flex',
           alignItems: 'center',
@@ -300,14 +299,14 @@ function HousingCard({ item }: { item: HousingItem }) {
           <Box
             sx={{
               position: 'absolute',
-              top: 12,
-              left: 12,
+              top: { xs: '12px', '3xl': '16px', '4k': '20px' },
+              left: { xs: '12px', '3xl': '16px', '4k': '20px' },
               backgroundColor: '#1e293b',
               color: 'white',
-              px: 2.5,
-              py: 0.75,
-              borderRadius: '6px',
-              fontSize: '0.8rem',
+              px: { xs: '10px', sm: '12px', '3xl': '16px', '4k': '20px' },
+              py: { xs: '6px', sm: '7px', '3xl': '9px', '4k': '12px' },
+              borderRadius: { xs: '6px', '3xl': '8px', '4k': '10px' },
+              fontSize: { xs: '0.75rem', sm: '0.8rem', '3xl': '1rem', '4k': '1.5rem' },
               fontWeight: 600,
             }}
           >
@@ -320,18 +319,18 @@ function HousingCard({ item }: { item: HousingItem }) {
           <Box
             sx={{
               position: 'absolute',
-              top: 12,
-              right: 12,
+              top: { xs: '12px', '3xl': '16px', '4k': '20px' },
+              right: { xs: '12px', '3xl': '16px', '4k': '20px' },
               backgroundColor: '#1e293b',
               color: 'white',
-              px: 1.5,
-              py: 0.5,
-              borderRadius: '6px',
-              fontSize: '0.8rem',
+              px: { xs: '8px', sm: '10px', '3xl': '14px', '4k': '18px' },
+              py: { xs: '4px', sm: '5px', '3xl': '7px', '4k': '10px' },
+              borderRadius: { xs: '6px', '3xl': '8px', '4k': '10px' },
+              fontSize: { xs: '0.75rem', sm: '0.8rem', '3xl': '1rem', '4k': '1.5rem' },
               fontWeight: 600,
               display: 'flex',
               alignItems: 'center',
-              gap: 0.5,
+              gap: { xs: '4px', '3xl': '6px', '4k': '8px' },
             }}
           >
             ⭐ {item.rating}
@@ -340,13 +339,13 @@ function HousingCard({ item }: { item: HousingItem }) {
       </Box>
 
       {/* Content Section */}
-      <Box sx={{ p: { xs: 2.5, sm: 3 } }}>
+      <Box sx={{ p: { xs: '20px', sm: '24px', '3xl': '32px', '4k': '48px' } }}>
         {/* Posted Date */}
         <Typography
           sx={{
-            fontSize: '0.75rem',
+            fontSize: { xs: '0.75rem', sm: '0.8rem', '3xl': '1rem', '4k': '1.5rem' },
             color: '#94a3b8',
-            mb: 2,
+            mb: { xs: '16px', sm: '18px', '3xl': '24px', '4k': '32px' },
             fontWeight: 500,
           }}
         >
@@ -356,78 +355,102 @@ function HousingCard({ item }: { item: HousingItem }) {
         {/* Title */}
         <Typography
           sx={{
-            fontSize: { xs: '1.125rem', sm: '1.2rem' },
+            fontSize: { xs: '1.125rem', sm: '1.2rem', '3xl': '1.5rem', '4k': '2.25rem' },
             fontWeight: 700,
             color: '#1e293b',
-            mb: 2.5,
+            mb: { xs: '20px', sm: '22px', '3xl': '28px', '4k': '40px' },
             lineHeight: 1.3,
           }}
         >
           {item.title}
         </Typography>
 
-        {/* Location - Plain text */}
-        <Typography
-          sx={{
-            fontSize: '0.9rem',
-            color: '#64748b',
-            mb: 1.5,
-            fontWeight: 500,
-          }}
-        >
-          {item.location}
-        </Typography>
+        {/* Icon Details */}
+        <Box sx={{ mb: { xs: '24px', sm: '26px', '3xl': '32px', '4k': '48px' }, display: 'flex', flexDirection: 'column', gap: { xs: '8px', '3xl': '12px', '4k': '16px' } }}>
+          {/* Location with Icon */}
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: '8px', '3xl': '12px', '4k': '16px' } }}>
+            <Box
+              component="img"
+              src="/location.svg"
+              alt="location"
+              sx={{ width: { xs: '16px', '3xl': '20px', '4k': '28px' }, height: { xs: '16px', '3xl': '20px', '4k': '28px' } }}
+            />
+            <Typography
+              sx={{
+                fontSize: { xs: '0.9rem', sm: '0.95rem', '3xl': '1.15rem', '4k': '1.75rem' },
+                color: '#64748b',
+                fontWeight: 500,
+              }}
+            >
+              {item.location}
+            </Typography>
+          </Box>
 
-        {/* Dates - Plain text */}
-        <Typography
-          sx={{
-            fontSize: '0.9rem',
-            color: '#64748b',
-            mb: 1.5,
-            fontWeight: 500,
-          }}
-        >
-          {item.startDate}{item.endDate && ` - ${item.endDate}`}
-        </Typography>
+          {/* Date with Icon */}
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: '8px', '3xl': '12px', '4k': '16px' } }}>
+            <Box
+              component="img"
+              src="/time.svg"
+              alt="time"
+              sx={{ width: { xs: '16px', '3xl': '20px', '4k': '28px' }, height: { xs: '16px', '3xl': '20px', '4k': '28px' } }}
+            />
+            <Typography
+              sx={{
+                fontSize: { xs: '0.9rem', sm: '0.95rem', '3xl': '1.15rem', '4k': '1.75rem' },
+                color: '#64748b',
+                fontWeight: 500,
+              }}
+            >
+              {item.startDate}
+            </Typography>
+          </Box>
 
-        {/* Inquiries - Plain text */}
-        <Typography
-          sx={{
-            fontSize: '0.9rem',
-            color: '#64748b',
-            mb: 3,
-            fontWeight: 500,
-          }}
-        >
-          {item.inquiries} {item.inquiries === 1 ? 'Inquiry' : 'Inquiries'}
-        </Typography>
+          {/* Inquiries with Icon */}
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: '8px', '3xl': '12px', '4k': '16px' } }}>
+            <Box
+              component="img"
+              src="/peoples.svg"
+              alt="people"
+              sx={{ width: { xs: '16px', '3xl': '20px', '4k': '28px' }, height: { xs: '16px', '3xl': '20px', '4k': '28px' } }}
+            />
+            <Typography
+              sx={{
+                fontSize: { xs: '0.9rem', sm: '0.95rem', '3xl': '1.15rem', '4k': '1.75rem' },
+                color: '#64748b',
+                fontWeight: 500,
+              }}
+            >
+              {item.inquiries} Booked
+            </Typography>
+          </Box>
+        </Box>
 
         {/* Buttons */}
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            gap: 2,
+            gap: { xs: '16px', sm: '18px', '3xl': '24px', '4k': '32px' },
           }}
         >
           <Button
             variant="outlined"
             fullWidth
             endIcon={
-              <Box component="span" sx={{ fontSize: '1.2rem' }}>
+              <Box component="span" sx={{ fontSize: { xs: '1.2rem', '3xl': '1.5rem', '4k': '2rem' } }}>
                 →
               </Box>
             }
             sx={{
-              py: 1.5,
-              fontSize: '0.95rem',
+              py: { xs: '12px', sm: '14px', '3xl': '18px', '4k': '24px' },
+              fontSize: { xs: '0.95rem', sm: '1rem', '3xl': '1.2rem', '4k': '1.75rem' },
               fontWeight: 600,
               textTransform: 'none',
               borderColor: '#cbd5e1',
               color: '#1e293b',
               backgroundColor: 'white',
               border: '2px solid #cbd5e1',
-              borderRadius: '10px',
+              borderRadius: { xs: '10px', '3xl': '12px', '4k': '16px' },
               '&:hover': {
                 backgroundColor: '#f8fafc',
                 borderColor: '#94a3b8',
@@ -442,18 +465,18 @@ function HousingCard({ item }: { item: HousingItem }) {
             variant="contained"
             fullWidth
             endIcon={
-              <Box component="span" sx={{ fontSize: '1.2rem' }}>
+              <Box component="span" sx={{ fontSize: { xs: '1.2rem', '3xl': '1.5rem', '4k': '2rem' } }}>
                 →
               </Box>
             }
             sx={{
-              py: 1.5,
-              fontSize: '0.95rem',
+              py: { xs: '12px', sm: '14px', '3xl': '18px', '4k': '24px' },
+              fontSize: { xs: '0.95rem', sm: '1rem', '3xl': '1.2rem', '4k': '1.75rem' },
               fontWeight: 600,
               textTransform: 'none',
               backgroundColor: '#1e293b',
               color: 'white',
-              borderRadius: '10px',
+              borderRadius: { xs: '10px', '3xl': '12px', '4k': '16px' },
               '&:hover': {
                 backgroundColor: '#0f172a',
               },
@@ -467,3 +490,5 @@ function HousingCard({ item }: { item: HousingItem }) {
     </Card>
   );
 }
+
+export default HousingCarousel;

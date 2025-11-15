@@ -3,6 +3,18 @@
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
+  // Extend breakpoints to match Tailwind's 3xl (1920px) and 4k (3840px)
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+      '3xl': 1920,
+      '4k': 3840,
+    } as any,
+  },
   palette: {
     primary: {
       main: '#2563eb', // Blue color matching your inspiration

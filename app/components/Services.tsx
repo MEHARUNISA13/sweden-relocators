@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { keyframes } from '@emotion/react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -120,6 +121,7 @@ const services: Service[] = [
 ];
 
 export default function Services() {
+  const { t } = useTranslation();
   return (
     <Box
       component="section"
@@ -141,8 +143,8 @@ export default function Services() {
               textTransform: 'uppercase',
               letterSpacing: '0.15em',
             }}
-          >
-            Empowering your skills to relocate and succeed in the Nordics
+>
+            {t('services.badge')}
           </Typography>
           <Typography
             sx={{
@@ -153,8 +155,8 @@ export default function Services() {
               textAlign: 'center',
               lineHeight: 1.2,
             }}
-          >
-            Trusted Legal Relocation Solutions For Individuals
+>
+            {t('services.title')}
           </Typography>
           <Typography
             sx={{
@@ -163,8 +165,8 @@ export default function Services() {
               color: '#60a5fa',
               textAlign: 'center',
             }}
-          >
-            Move To and From Sweden
+>
+            {t('services.subtitle')}
           </Typography>
         </Box>
 
@@ -397,9 +399,9 @@ export default function Services() {
                       },
                     },
                   }}
-                >
+>
                   <Box component="span" sx={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', gap: 0.75 }}>
-                    View Details
+                    {t('services.viewDetails')}
                     <Box
                       component="span"
                       sx={{

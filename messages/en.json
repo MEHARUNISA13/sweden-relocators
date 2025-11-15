@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "title": "Sweden Relocators",
+    "description": "Relocate to Sweden with expert advice"
+  },
+  "navbar": {
+    "topBar": {
+      "employmentRate": "Employment Rate: 69.6%",
+      "educationRate": "Education Rate: 85.2%",
+      "genderRatio": "Gender Ratio: 1:1",
+      "countryName": "Sweden",
+      "gdp": "GDP: US$ 610.1 billion",
+      "population": "Total Population: 10.65 million"
+    },
+    "links": {
+      "newInSweden": "New in Sweden",
+      "services": "Services",
+      "aboutUs": "About us",
+      "housing": "Housing",
+      "assessment": "Assessment",
+      "contactUs": "Contact us"
+    },
+    "buttons": {
+      "bookAppointment": "Book Appointment",
+      "login": "Login"
+    },
+    "language": {
+      "english": "English"
+    }
+  },
+  "hero": {
+    "titleLine1": "Relocate To Sweden",
+    "titleLine2": "With an Expert Advise",
+    "description": "We provide comprehensive relocation and immigration support for individuals, employees, and companies, covering residence permits, housing, school placements, and integration all seamlessly managed through our secure web and mobile platform across Sweden, Denmark, and the wider Nordic region.",
+    "buttons": {
+      "ourServices": "Our Services",
+      "bookAppointment": "Book Appointment"
+    }
+  },
+  "services": {
+    "badge": "Empowering your skills to relocate and succeed in the Nordics",
+    "title": "Trusted Legal Relocation Solutions For Individuals",
+    "subtitle": "Move To and From Sweden",
+    "viewDetails": "View Details"
+  }
+}
