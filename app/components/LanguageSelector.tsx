@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import i18n from '../../i18n';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -55,6 +56,14 @@ export default function LanguageSelector({
     if (onLanguageChange) {
       onLanguageChange(languageCode);
     }
+
+    // Only switch i18n language for locales we actually support
+    if (['en', 'sv'].includes(languageCode)) {
+      i18n.changeLanguage(languageCode).catch((err) => {
+        console.error('Failed to change language', err);
+      });
+    }
+
     onClose();
   };
 

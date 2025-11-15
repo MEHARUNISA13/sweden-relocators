@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import en from './messages/en.json';
+import sv from './messages/sv.json';
 
 // Initialize i18next once on the client
 if (!i18n.isInitialized) {
@@ -10,6 +11,9 @@ if (!i18n.isInitialized) {
       resources: {
         en: {
           translation: en,
+        },
+        sv: {
+          translation: sv,
         },
       },
       lng: 'en',

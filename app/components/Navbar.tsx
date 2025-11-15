@@ -136,6 +136,15 @@ export default function Navbar() {
                 .dropdown-menu {
                   animation: slideDown 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
                 }
+.dropdown-menu--services {
+                  width: min(100vw - 32px, 1000px);
+                }
+                @media (min-width: 1280px) {
+                  .dropdown-menu--services {
+                    width: 90vw;
+                    max-width: 1000px;
+                  }
+                }
               `}</style>
               
               <a 
@@ -160,7 +169,7 @@ export default function Navbar() {
   </a>
   {openDropdowns.services && (
     <div 
-      className="dropdown-menu absolute left-1/2 -translate-x-1/2 mt-2 w-[90vw] max-w-[1000px] bg-white rounded-xl shadow-2xl border border-gray-100 py-10 px-12 z-50"
+      className="dropdown-menu dropdown-menu--services absolute left-0 xl:left-1/2 xl:-translate-x-1/2 mt-2 bg-white rounded-xl shadow-2xl border border-gray-100 py-8 sm:py-10 px-4 sm:px-8 xl:px-12 z-50"
       onMouseEnter={() => toggleDropdown('services')}
       onMouseLeave={closeAllDropdowns}
     >

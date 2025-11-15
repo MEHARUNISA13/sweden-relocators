@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "title": "Sweden Relocators",
+    "description": "Flytta till Sverige med expertråd"
+  },
+  "navbar": {
+    "topBar": {
+      "employmentRate": "Sysselsättningsgrad: 69,6%",
+      "educationRate": "Utbildningsnivå: 85,2%",
+      "genderRatio": "Könsfördelning: 1:1",
+      "countryName": "Sverige",
+      "gdp": "BNP: 610,1 miljarder USD",
+      "population": "Total befolkning: 10,65 miljoner"
+    },
+    "links": {
+      "newInSweden": "Ny i Sverige",
+      "services": "Tjänster",
+      "aboutUs": "Om oss",
+      "housing": "Boende",
+      "assessment": "Bedömning",
+      "contactUs": "Kontakta oss"
+    },
+    "buttons": {
+      "bookAppointment": "Boka möte",
+      "login": "Logga in"
+    },
+    "language": {
+      "english": "Engelska"
+    }
+  },
+  "hero": {
+    "titleLine1": "Flytta till Sverige",
+    "titleLine2": "Med expertrådgivning",
+    "description": "Vi erbjuder heltäckande stöd för relocation och migration för privatpersoner, anställda och företag. Vi hjälper till med uppehållstillstånd, boende, skolplacering och integration – allt hanteras sömlöst via vår säkra webb- och mobilplattform i Sverige, Danmark och övriga Norden.",
+    "buttons": {
+      "ourServices": "Våra tjänster",
+      "bookAppointment": "Boka möte"
+    }
+  },
+  "services": {
+    "badge": "Stärker dina möjligheter att flytta och lyckas i Norden",
+    "title": "Trygga juridiska relocation-lösningar för privatpersoner",
+    "subtitle": "Flytta till och från Sverige",
+    "viewDetails": "Visa detaljer"
+  }
+}

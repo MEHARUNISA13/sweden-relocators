@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 
 const fadeInUp = `
   @keyframes fadeInUp {
@@ -17,6 +18,7 @@ const fadeInUp = `
 
 export default function Hero() {
   const { t } = useTranslation();
+  const [showVideo, setShowVideo] = useState(false);
   return (
     <section className="relative overflow-hidden bg-[#EBF4FF]">
       <style>{fadeInUp}</style>
@@ -57,14 +59,30 @@ export default function Hero() {
               {/* Simple video with rounded corners - NO frame, NO badge, NOTHING */}
               <div className="relative rounded-2xl sm:rounded-3xl 3xl:rounded-[2.5rem] 4k:rounded-[4rem] overflow-hidden shadow-2xl">
                 <div className="relative aspect-video bg-black">
-                  <iframe
-                    src="https://share.synthesia.io/embeds/videos/7ffc5155-81ff-4153-b235-6fa60d54a4ef"
-                    className="w-full h-full"
-                    allow="autoplay; fullscreen"
-                    allowFullScreen
-                    style={{ border: 'none' }}
-                    title="Immigration & Relocation"
-                  />
+                  {showVideo ? (
+                    <iframe
+                      src="https://share.synthesia.io/embeds/videos/7ffc5155-81ff-4153-b235-6fa60d54a4ef"
+                      className="w-full h-full"
+                      loading="lazy"
+                      allow="autoplay; fullscreen"
+                      allowFullScreen
+                      style={{ border: 'none' }}
+                      title="Immigration & Relocation"
+                    />
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setShowVideo(true)}
+                      className="w-full h-full relative flex items-center justify-center text-white"
+                    >
+                      <span className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/40 to-black/20" />
+                      <span className="relative inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/95 text-black shadow-lg">
+                        <svg className="w-7 h-7 sm:w-8 sm:h-8 ml-1" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </span>
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
